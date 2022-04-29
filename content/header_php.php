@@ -24,5 +24,12 @@ function print_br(mixed $str = "")
 }
 
 // cache無効か
-header( 'Expires: Thu, 01 Jan 1970 00:00:00 GMT' );
-header( 'Last-Modified: '.gmdate( 'D, d M Y H:i:s' ).' GMT' );
+header('Expires: Thu, 01 Jan 1970 00:00:00 GMT');
+header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+
+function print_f(array $ary)
+{
+    foreach ($ary as $key => $value) {
+        print "[{$key}] => [{$value}]";
+    }
+}
