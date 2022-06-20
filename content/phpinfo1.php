@@ -42,13 +42,14 @@ TEST;
     print_br('@ hello t\shis is single quote: {$val1}');
     print_br("@ hello t\shis is single quote: {$val1}");
 
-    // deepcopy
+    // deepcopy 値渡し
     section('deepcopy');
     $var1 = "test1";
     $var2 = $var1;
+    $var2 = 'var_change2';
     print_br('var1: ' . $var1 . ' var2: ' . $var2);
 
-    // shallow copy. $var1 =& $var2
+    // shallow copy. $var1 =& $var2　参照渡し
     section('shallow copy. $var1 =& $var2');
     $var2 = &$var1;
     print_br('var2:' . $var2);
@@ -182,9 +183,9 @@ TEST;
     section('do while');
     $count = 0;
     do {
-        print_br($count);
         echo $count++;
-    } while ($count === 9);
+        print_br();
+    } while ($count <= 9);
 
     // for
     section('for');

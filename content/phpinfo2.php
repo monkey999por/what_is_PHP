@@ -9,7 +9,11 @@
 </head>
 
 <body>
-    <?php include "header_php.php"; ?>
+    <?php
+
+    use FFI\Exception;
+
+    include "header_php.php"; ?>
     <?php
     section('キーの自動付与aaabb');
     // 数値が順番に
@@ -48,24 +52,121 @@
     var_dump($three_dim);
     echo '</pre>';
     br();
-   
+
     echo '<pre>';
     echo json_encode(
         $three_dim,
         JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
     );
     echo '</pre>';
-    echo 'test';
-    echo '123';
-    echo 345679;
-    br();
-    echo 876;
-    echo 876;
-    echo 876;
-    echo 'ok';
+
+    section('関数');
+    section('関数の使い方');
+    function check(string $kyoka, int $score = 0)
+    {
+        if ($kyoka === null)
+            return;
+        $gouhi = $score >= 60 ? "合格" : "不合格";
+        print "教科: {$kyoka}, 得点: {$score}, 結果: {$gouhi}";
+        br();
+    }
+
+    check("国語", 59);
+    check("数学", 80);
+    check("科学", 60);
+
+    section("クラス");
+
+    define('AIR_FROW_TYPE', array('弱', '中', '強'));
+    define('RHYTHM_TYPE', array('nomal', 'constant', 'random'));
+
+    $eFun = new ElectricFan();
+    $eFun->power();
+    $eFun->set_airFrow(1);
+    $eFun->set_rhythm(2);
+    $eFun->set_timer(120);
+    $eFun->info();
+    $eFun->power();
+    // 扇風機
+    class ElectricFan
+    {
+        private bool $switch = false;
+        private int $timer = 0;
+        private int $airFrow = 0;
+        private int $rhythm = 0;
+
+        // constant value in class
+        private const type = 'E_FUN01';
+
+        // constracter
+        public function __construct()
+        {
+            section("constracter");
+        }
+
+        function power()
+        {
+            $this->switch = !$this->switch;
+            if ($this->switch) {
+                print_br("Electric fun started");
+                $this->info();
+            } else {
+                print_br("Electric fun stopd");
+            }
+        }
+        public function info()
+        {
+            // refrence constant value
+            // ※「self」はカレントクラスを表します。「$this」はオブジェクト毎ですけど「self」はクラスとして考える場合に使います。
+            print_br("type: " . self::type);
+            print_br("timer: {$this->timer}");
+            print_br("airFrow: " . AIR_FROW_TYPE[$this->airFrow]);
+            print_br("rhythm: " . RHYTHM_TYPE[$this->rhythm]);
+        }
+
+        public function set_timer(int $time)
+        {
+            if ($time == null) {
+                throw new Exception("Error Processing Request", 1);
+            }
+            if ($time < 0) {
+                throw new Exception("Error Processing Request", 1);
+            }
+            $this->timer = $time;
+        }
+
+        public function set_airFrow(int $level)
+        {
+            if ($level === null)
+                throw new Exception("Error Processing Request", 1);
+
+            if ($level < 0 || $level >= sizeof(AIR_FROW_TYPE)) {
+                throw new Exception("Error Processing Request", 1);
+            }
+            $this->airFrow = $level;
+            print "set_airFrow done. level: {$this->airFrow}<br>";
+        }
+        public function set_rhythm(int $level)
+        {
+            if ($level === null)
+                throw new Exception("Error Processing Request", 1);
+
+            if ($level < 0 || $level >= sizeof(AIR_FROW_TYPE)) {
+                throw new Exception("Error Processing Request", 1);
+            }
+            $this->rhythm = $level;
+            print "set_rhythm done. level: {$this->rhythm}<br>";
+        }
+    }
+
+
+
+
+
 
     ?>
 
 </body>
+
 
 </html>
