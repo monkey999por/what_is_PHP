@@ -12,7 +12,7 @@
 <body>
     <?php
     section("セッション管理");
-    session_start();
+    session_start();   
 
     if (!isset($_COOKIE["PHPSESSID"])) {
         print_br("セッションを開始");
@@ -33,9 +33,9 @@
         $_SESSION = array();
 
         // クッキーからセッションID削除
-        if (isset($_COOKIE['PHPSESSID'])) {
-            setcookie("PHPSESSID", "", time() - 60);
-        }
+        // if (isset($_COOKIE['PHPSESSID'])) {
+        //     setcookie("PHPSESSID", "", time() - 60);
+        // }
 
         // セッションの全データ削除
         session_destroy();

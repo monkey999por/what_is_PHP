@@ -13,6 +13,7 @@
     <?php
     section("クッキーの利用");
     setcookie("cookie1", "cookvalue1");
+    
 
     // 削除
     // 過去日付を指定すれば消える
