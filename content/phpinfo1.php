@@ -28,7 +28,7 @@ TEST;
 
     // 文字列結合 .
     section('文字列結合 .');
-    print_br('こんにちは。' . 'お元気ですか?');
+    print_br('こんにちは。' . 'お元気ですか?あああ');
 
     printf('-', $_COOKIE);
     print_br();
@@ -248,9 +248,9 @@ TEST;
     // key, value をこんな感じでもかける
     $ar = array('test' => 'OK', 'test2' => 'NG');
     foreach ($ar as $key => $value) {
-        print($key.'='.$value);
+        print($key . '=' . $value);
     }
-    
+
     // 複数の要素を作成する場合、キーは連続した整数である必要はありません。
     section('いろんな配列のキー');
 
